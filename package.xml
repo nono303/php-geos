@@ -36,6 +36,7 @@ http://pear.php.net/dtd/package-2.0.xsd">
     <dir name="/">
       <file role="src" name="geos.c"/>
       <file role="src" name="php_geos.h"/>
+	  <file role="src" name="arginfo.h"/>
       <file role="src" name="config.m4"/>
       <file role="doc" name="COPYING"/>
       <file role="doc" name="CREDITS"/>

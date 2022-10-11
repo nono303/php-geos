@@ -26,7 +26,7 @@
 #define PHP_GEOS_H
 
 /* TODO: generate from ./configure ? */
-#define PHP_GEOS_VERSION "1.0.1"
+#define PHP_GEOS_VERSION "1.0.1.1"
 #define PHP_GEOS_EXTNAME "geos"
 
 #ifdef HAVE_CONFIG_H
@@ -46,6 +46,15 @@ extern zend_module_entry geos_module_entry;
 #define GEOS_G(v) TSRMG(geos_globals_id, zend_geos_globals *, v)
 #else
 #define GEOS_G(v) (geos_globals.v)
+#endif
+
+/* for PHP 8 */
+#ifndef TSRMLS_D
+#define TSRMLS_D void
+#define TSRMLS_DC
+#define TSRMLS_C
+#define TSRMLS_CC
+#define TSRMLS_FETCH()
 #endif
 
 ZEND_BEGIN_MODULE_GLOBALS(geos)
