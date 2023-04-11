@@ -2,11 +2,12 @@ FROM kpengboy/trisquel
 RUN apt-get update -qq && apt-get install -y \
   autoconf \
   build-essential \
+  cmake \
   curl
 
 
 # PHP-5.4.9
-RUN curl -so php-5.4.9.tar.bz2 \
+RUN curl -sLo php-5.4.9.tar.bz2 \
     http://museum.php.net/php5/php-5.4.9.tar.bz2
 RUN tar xjf php-5.4.9.tar.bz2
 RUN cd php-5.4.9 && \
@@ -26,7 +27,7 @@ RUN cd .. && rm -rf php-5.4.9*
 RUN strip /opt/php-5.4.9/bin/php
 
 # PHP-5.5.38
-RUN curl -so php-5.5.38.tar.bz2 \
+RUN curl -sLo php-5.5.38.tar.bz2 \
     http://www.php.net/distributions/php-5.5.38.tar.bz2
 RUN tar xjf php-5.5.38.tar.bz2
 RUN cd php-5.5.38 && \
@@ -46,7 +47,7 @@ RUN cd .. && rm -rf php-5.5.38*
 RUN strip /opt/php-5.5.38/bin/php
 
 # PHP-5.6.28
-RUN curl -so php-5.6.28.tar.bz2 \
+RUN curl -sLo php-5.6.28.tar.bz2 \
     http://www.php.net/distributions/php-5.6.28.tar.bz2
 RUN tar xjf php-5.6.28.tar.bz2
 RUN cd php-5.6.28 && \
@@ -66,7 +67,7 @@ RUN cd .. && rm -rf php-5.6.28*
 RUN strip /opt/php-5.6.28/bin/php
 
 # PHP-7.0.13
-RUN curl -so php-7.0.13.tar.bz2 \
+RUN curl -sLo php-7.0.13.tar.bz2 \
     http://www.php.net/distributions/php-7.0.13.tar.bz2
 RUN tar xjf php-7.0.13.tar.bz2
 RUN cd php-7.0.13 && \
@@ -87,7 +88,7 @@ RUN rm /opt/php-7.0.13/bin/phpdbg
 RUN strip /opt/php-7.0.13/bin/php
 
 # PHP-7.1.0
-RUN curl -so php-7.1.0.tar.bz2 \
+RUN curl -sLo php-7.1.0.tar.bz2 \
     http://www.php.net/distributions/php-7.1.0.tar.bz2
 RUN tar xjf php-7.1.0.tar.bz2
 RUN cd php-7.1.0 && \
@@ -107,9 +108,51 @@ RUN cd .. && rm -rf php-7.1.0*
 RUN rm /opt/php-7.1.0/bin/phpdbg
 RUN strip /opt/php-7.1.0/bin/php
 
+# PHP-7.4.30
+RUN curl -sLo php-7.4.30.tar.bz2 \
+    http://www.php.net/distributions/php-7.4.30.tar.bz2
+RUN tar xjf php-7.4.30.tar.bz2
+RUN cd php-7.4.30 && \
+    ./configure --prefix=/opt/php-7.4.30 \
+      --enable-debug \
+      --disable-all \
+      --disable-cgi \
+      --disable-dom \
+      --disable-libxml \
+      --disable-simplexml \
+      --disable-xml \
+      --disable-xmlreader \
+      --disable-xmlwriter \
+      --without-pear && \
+    make install
+RUN cd .. && rm -rf php-7.4.30*
+RUN rm /opt/php-7.4.30/bin/phpdbg
+RUN strip /opt/php-7.4.30/bin/php
+
+# PHP-8.1.10
+RUN curl -sLo php-8.1.10.tar.bz2 \
+    http://www.php.net/distributions/php-8.1.10.tar.bz2
+RUN tar xjf php-8.1.10.tar.bz2
+RUN cd php-8.1.10 && \
+    ./configure --prefix=/opt/php-8.1.10 \
+      --enable-debug \
+      --disable-all \
+      --disable-cgi \
+      --disable-dom \
+      --disable-libxml \
+      --disable-simplexml \
+      --disable-xml \
+      --disable-xmlreader \
+      --disable-xmlwriter \
+      --without-pear && \
+    make install
+RUN cd .. && rm -rf php-8.1.10*
+RUN rm /opt/php-8.1.10/bin/phpdbg
+RUN strip /opt/php-8.1.10/bin/php
+
 
 # GEOS-3.4.3
-RUN curl -so geos-3.4.3.tar.bz2 \
+RUN curl -sLo geos-3.4.3.tar.bz2 \
     http://download.osgeo.org/geos/geos-3.4.3.tar.bz2
 RUN tar xjf geos-3.4.3.tar.bz2
 RUN cd geos-3.4.3 && \
@@ -120,7 +163,7 @@ RUN cd geos-3.4.3 && \
 RUN cd .. && rm -rf geos-3.4.3*
 
 # GEOS-3.5.1
-RUN curl -so geos-3.5.1.tar.bz2 \
+RUN curl -sLo geos-3.5.1.tar.bz2 \
     http://download.osgeo.org/geos/geos-3.5.1.tar.bz2
 RUN tar xjf geos-3.5.1.tar.bz2
 RUN cd geos-3.5.1 && \
@@ -131,7 +174,7 @@ RUN cd geos-3.5.1 && \
 RUN cd .. && rm -rf geos-3.5.1*
 
 # GEOS-3.6.0
-RUN curl -so geos-3.6.0.tar.bz2 \
+RUN curl -sLo geos-3.6.0.tar.bz2 \
     http://download.osgeo.org/geos/geos-3.6.0.tar.bz2
 RUN tar xjf geos-3.6.0.tar.bz2
 RUN cd geos-3.6.0 && \
@@ -140,3 +183,45 @@ RUN cd geos-3.6.0 && \
       --disable-static \
     && make install-strip
 RUN cd .. && rm -rf geos-3.6.0*
+
+# GEOS-3.7.5
+RUN curl -sLo geos-3.7.5.tar.bz2 \
+    http://download.osgeo.org/geos/geos-3.7.5.tar.bz2
+RUN tar xjf geos-3.7.5.tar.bz2
+RUN cd geos-3.7.5 && \
+    ./configure --prefix=/opt/geos-3.7.5 \
+      --disable-swig \
+      --disable-static \
+    && make install-strip
+RUN cd .. && rm -rf geos-3.7.5*
+
+# GEOS-3.8.3
+RUN curl -sLo geos-3.8.3.tar.bz2 \
+    http://download.osgeo.org/geos/geos-3.8.3.tar.bz2
+RUN tar xjf geos-3.8.3.tar.bz2
+RUN cd geos-3.8.3 && \
+    ./configure --prefix=/opt/geos-3.8.3 \
+      --disable-swig \
+      --disable-static \
+    && make install-strip
+RUN cd .. && rm -rf geos-3.8.3*
+
+# GEOS-3.9.3
+RUN curl -sLo geos-3.9.3.tar.bz2 \
+    http://download.osgeo.org/geos/geos-3.9.3.tar.bz2
+RUN tar xjf geos-3.9.3.tar.bz2
+RUN cd geos-3.9.3 && \
+    ./configure --prefix=/opt/geos-3.9.3 \
+      --disable-swig \
+      --disable-static \
+    && make install-strip
+RUN cd .. && rm -rf geos-3.9.3*
+
+# GEOS-3.10.3
+RUN curl -sLo geos-3.10.3.tar.bz2 \
+    http://download.osgeo.org/geos/geos-3.10.3.tar.bz2
+RUN tar xjf geos-3.10.3.tar.bz2
+RUN cd geos-3.10.3 && \
+    ./configure --prefix=/opt/geos-3.10.3 \
+    && make install
+RUN cd .. && rm -rf geos-3.10.3*

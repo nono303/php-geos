@@ -1,35 +1,37 @@
-# PHP module for GEOS
+PHP module for GEOS
+===================
 
-[![build status](https://dronie.osgeo.org/api/badges/geos/php-geos/status.svg?branch=master)](https://github.com/libgeos/php-geos/tree/master)
+[![build status]
+(https://dronie.osgeo.org/api/badges/geos/php-geos/status.svg?branch=master)]
+(https://dronie.osgeo.org/geos/php-geos?branch=master)
 
 The code in this directory provides a PHP module to make use
-of functionalities of the [GEOS library](http://geos.osgeo.org).
+of functionalities of the [GEOS library] (http://geos.osgeo.org).
 
 The bindings are linked to the C-API, for betters stability.
 
-## Building (UNIX)
+# Building (UNIX)
 
-### Requirements
+## Requirements
 
 You need:
 
-- PHP development files
-  ( often found in packages named something like 'php5-dev' )
+  - PHP development files
+    ( often found in packages named something like 'php5-dev' )
 
-- GEOS development files
-  ( often found in packages named something like 'libgeos-dev' )
+  - GEOS development files
+    ( often found in packages named something like 'libgeos-dev' )
 
-### Procedure
+## Procedure
 
-    git clone https://github.com/libgeos/php-geos.git
+    git clone https://git.osgeo.org/gitea/geos/php-geos.git
     cd php-geos
     ./autogen.sh
     ./configure
     make # generates modules/geos.so
+# Building (Windows)
 
-## Building (Windows)
-
-### Requirements
+## Requirements
 
 - PHP source files:  download [zip](http://windows.php.net/download/) or clone from [github](https://github.com/php/php-src)
 - PHP SDK ( https://github.com/Microsoft/php-sdk-binary-tools )
@@ -41,7 +43,7 @@ You need:
     * As part of [OSGeo4W](http://osgeo4w.osgeo.org/) as part of the geos package.
     * As part of [MS4W](https://ms4w.com/)
 
-### Configure
+## Configure
 
 Official instructions for compiling PHP extensions: https://wiki.php.net/internals/windows/stepbystepbuild_sdk_2
 
@@ -64,7 +66,7 @@ Official instructions for compiling PHP extensions: https://wiki.php.net/interna
 6. Copy (clone) code from this repository to `C:\php-sdk\phpdev\vc15\x64\php-7.4.11-src\ext\geos`
  
  
-### Compile
+## Compile
 
 Run next commands to compile ([see official php instruction](https://wiki.php.net/internals/windows/stepbystepbuild_sdk_2)):
     
@@ -73,10 +75,8 @@ Run next commands to compile ([see official php instruction](https://wiki.php.ne
     buildconf
     configure --disable-all --enable-cli --with-geos
     nmake
-   
 
-
-## Testing
+# Testing
 
 Automated testing is executed on 'make check'.
 
@@ -84,19 +84,19 @@ You'll need phpunit installed for this to work. To install:
 
     pear install --force --alldeps phpunit/phpunit
 
-## Installing
+# Installing
 
-### Unix
+## Unix
 
 As root (or owner with write access to the directory
 returned by php-config --extension-dir), run:
 
     make install
 
-### Window
-Copy php_geos.dll to extension directory and enable it in php.ini
+## Window
 
-## Using
+Copy php_geos.dll to extension directory and enable it in php.ini
 
  ... TODO ...
  (reference some automatically built doc?)
+

@@ -78,6 +78,7 @@ PHP_FUNCTION(GEOSRelateMatch);
 # define GEOS_PHP_ADD_ASSOC_ZVAL(a,k,v) add_assoc_zval((a), (k), (v))
 # define GEOS_PHP_HASH_GET_CUR_KEY(s,k,i) zend_hash_get_current_key((s), (k), (i), 0)
 # define zend_string char
+# define zend_long long
 # define ZSTR_VAL(x) (x)
 # define GEOS_PHP_HASH_GET_CUR_DATA(h,d) zend_hash_get_current_data((h),(void**)&(d))
 # define GEOS_PHP_ZVAL zval **

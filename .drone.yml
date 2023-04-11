@@ -1,25 +1,27 @@
 # See http://readme.drone.io/usage/overview
 pipeline:
   build:
-    image: docker.kbt.io/php-geos/build-test:trisquel
+    image: docker.osgeo.org/geos/php-build-test:trisquel
     pull: true
     commands:
-      - export PATH=$PHP_BIN:$GEOS_BIN:$PATH
+      - export PATH=${PHP_BIN}:${GEOS_BIN}:$${PATH}
+      - echo $${PATH}
+      - ls /opt/
       - php --version
       #  Always use newest phpize or we'll be hit by
       #  false negatives on make check, see
       #  https://git.osgeo.org/gogs/geos/php-geos/issues/16
-      - /opt/php-7.1.0/bin/phpize
+      #- /opt/php-7.1.0/bin/phpize
+      #- /opt/php-7.4.30/bin/phpize
+      - /opt/php-8.1.10/bin/phpize # is this failing ?
       - ./configure
       - make
       - make check
 matrix:
   PHP_BIN:
-    - /opt/php-5.4.9/bin/
-    - /opt/php-5.5.38/bin/
-    - /opt/php-5.6.28/bin/
-    - /opt/php-7.0.13/bin/
-    - /opt/php-7.1.0/bin/
+    #- /opt/php-7.1.0/bin/
+    #- /opt/php-7.4.30/bin/
+    - /opt/php-8.1.10/bin/
   GEOS_BIN:
     - /opt/geos-3.4.3/bin/
     - /opt/geos-3.5.1/bin/
